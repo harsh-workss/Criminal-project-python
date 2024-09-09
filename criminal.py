@@ -57,17 +57,97 @@ class Criminal:
         Main_frame=Frame(self.main,bd=2,relief=RIDGE,bg='white')
         Main_frame.place(x=10,y=200,width=1500,height=560)
 
+        # upper frame
         upper_frame=LabelFrame(Main_frame,bd=2,relief=RIDGE,text='Criminal Information',font=('times new roman',20,'bold'),bg='white',fg='red')
         upper_frame.place(x=10,y=10,width=1480,height=270)
 
+        # Labels Entry
 
+        # Case id
+        Caseid=Label(upper_frame,text='Case ID:',font=('arial',12,'bold'),bg='white')
+        Caseid.grid(row=0,column=0,padx=2,sticky=W)
 
+        Caseentry=ttk.Entry(upper_frame,width=22,font=('arial',11,'bold'))
+        Caseentry.grid(row=0,column=1,padx=2,sticky=W)
 
+        # Criminal Number
+        lbl_Criminal_no=Label(upper_frame,font=('arial',12,'bold'),text='Criminal No:',bg='white')
+        lbl_Criminal_no.grid(row=0,column=2,sticky=W,padx=2,pady=7)
 
+        txt_Criminal_no=ttk.Entry(upper_frame,width=24,font=('arial',11,'bold'))
+        txt_Criminal_no.grid(row=0,column=3,padx=2,pady=7)  
+
+        # Criminal Name
+        lbl_Name=Label(upper_frame,font=('arial',12,'bold'),text='Criminal Name:',bg='white') 
+        lbl_Name.grid(row=1,column=0,sticky=W,padx=5,pady=7)
+
+        txt_Name=ttk.Entry(upper_frame,width=22,font=('arial',11,'bold'))
+        txt_Name.grid(row=1,column=1,sticky=W,padx=2,pady=7)  
+
+        # Nickname
+        lbl_nickname=Label(upper_frame,font=('arial',12,'bold'),text='Nick name:',bg='white') 
+        lbl_nickname.grid(row=1,column=2,sticky=W,padx=2,pady=7)
+
+        txt_nickname=ttk.Entry(upper_frame,width=22,font=('arial',12,'bold'))
+        txt_nickname.grid(row=1,column=3,sticky=W,padx=2,pady=7)
+
+        # Arrest date
+        lbl_arrestDate=Label(upper_frame,font=('arial',12,'bold'),text='Arrest Date:',bg='white')
+        lbl_arrestDate.grid(row=2,column=0,sticky=W,padx=2,pady=7)
+
+        txt_arrestDate=ttk.Entry(upper_frame,width=20,font=('arial',12,'bold'))
+        txt_arrestDate.grid(row=2,column=1,sticky=W,padx=2,pady=7)  
+        
+        # Date of Crime
+        lbl_Dateofarrest=Label(upper_frame,font=('arial',12,'bold'),text='Date of Crime:',bg='white')
+        lbl_Dateofarrest.grid(row=2,column=2,sticky=W,padx=2,pady=7)
+
+        txt_Dateofarrest=ttk.Entry(upper_frame,width=22,font=('arial',12,'bold'))
+        txt_Dateofarrest.grid(row=2,column=3,sticky=W,padx=2,pady=7)  
+
+        # Address
+        lbl_address=Label(upper_frame,font=('arial',12,'bold'),text='Address:',bg='white')
+        lbl_address.grid(row=3,column=0,sticky=W,padx=2,pady=7)
+
+        txt_address=ttk.Entry(upper_frame,font=('arial',12,'bold'))
+        txt_address.grid(row=3,column=1,sticky=W,padx=2,pady=7)
+
+        # Age
+        lbl_age=Label(upper_frame,font=('arial',12,'bold'),text='Age:',bg='white')
+        lbl_age.grid(row=3,column=2,sticky=W,padx=2,pady=7)
+
+        txt_age=ttk.Entry(upper_frame,font=('arial',12,'bold'),width=22)
+        txt_age.grid(row=3,column=3,sticky=W,padx=2,pady=7)
+
+        #occupation
+        lbl_occupation=Label(upper_frame,font=('arial',12,'bold'),text='Occupation:',bg='white')
+        lbl_occupation.grid(row=4,column=0,sticky=W,padx=2,pady=7)
+
+        txt_occupation=ttk.Entry(upper_frame,width=20,font=('arial',12,'bold'))
+        txt_occupation.grid(row=4,column=1,sticky=W,padx=2,pady=7)
+
+        # Crime type
+        lbl_crimetype=Label(upper_frame,font=('arial',12,'bold'),text='Crime Type:',bg='white')
+        lbl_crimetype.grid(row=4,column=2,sticky=W,padx=2,pady=7)
+
+        txt_crimetype=ttk.Entry(upper_frame,width=22,font=('arial',12,'bold'))
+        txt_crimetype.grid(row=4,column=3,sticky=W,padx=2,pady=7)
+
+        # Father name
+        lbl_fathername=Label(upper_frame,font=('arial',12,'bold'),text='Father Name:',bg='white')
+        lbl_fathername.grid(row=0,column=5,sticky=W,padx=2,pady=7)
+
+        txt_fathername=ttk.Entry(upper_frame,width=22,font=('arial',12,'bold'))
+        txt_fathername.grid(row=0,column=6,sticky=W,padx=2,pady=7)
 
         
+        # down frame
+        down_frame=LabelFrame(Main_frame,bd=2,relief=RIDGE,text='Criminal Information table',font=('times new roman',18,'bold'),bg='white',fg='red')
+        down_frame.place(x=10,y=280,width=1480,height=270)
 
-
+        # search frame
+        search_frame=LabelFrame(down_frame,bd=2,relief=RIDGE,text='Search Criminal record',font=('tiems of roman',15,'bold'),bg='white',fg='red')
+        search_frame.place(x=0,y=0,width=1470,height=60)
 
 
 
