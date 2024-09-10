@@ -140,7 +140,58 @@ class Criminal:
         txt_fathername=ttk.Entry(upper_frame,width=22,font=('arial',12,'bold'))
         txt_fathername.grid(row=0,column=6,sticky=W,padx=2,pady=7)
 
+        # Gender
+        lbl_gender=Label(upper_frame,font=('arial',12,'bold'),text='Gender:',bg='white')
+        lbl_gender.grid(row=1,column=5,sticky=W,padx=2,pady=7)
+
+              
         
+        # Most Wanted
+        lbl_mostwanted=Label(upper_frame,font=('arial',12,'bold'),text='Most Wanted:',bg='white')
+        lbl_mostwanted.grid(row=2,column=5,sticky=W,padx=2,pady=7)
+
+        # Radio Button Gender
+        radio_frame_gender=Frame(upper_frame,bd=2,relief=RIDGE,bg='white')
+        radio_frame_gender.place(x=765,y=45,width=190,height=35)
+
+        male=Radiobutton(radio_frame_gender,text='Male',value='male',font=('arial',9,'bold'),bg='white')
+        male.grid(row=0,column=0,sticky=W,padx=2,pady=5)
+
+        female=Radiobutton(radio_frame_gender,text='Female',value='female',font=('arial',9,'bold'),bg='white')
+        female.grid(row=0,column=1,sticky=W,padx=2,pady=5)
+
+
+        # Radio Button MostWanted
+        radio_frame_mostwanted=Frame(upper_frame,bd=2,relief=RIDGE,bg='white')
+        radio_frame_mostwanted.place(x=765,y=85,width=190,height=35)
+
+        yes=Radiobutton(radio_frame_mostwanted,text='YES',value='yes',font=('arial',9,'bold'),bg='white')
+        yes.grid(row=0,column=0,padx=2,pady=5,sticky=W)
+
+        no=Radiobutton(radio_frame_mostwanted,text='NO',value='no',font=('arial',9,'bold'),bg='white')
+        no.grid(row=0,column=1,padx=2,pady=5,sticky=W)
+
+
+        # Button frame
+        button_frame=Frame(upper_frame,bd=2,relief=RIDGE,bg='white')
+        button_frame.place(x=5,y=190,width=630,height=45)
+
+        # Add button
+        button_add=Button(button_frame,text='Record Save',font=('arial',13,'bold'),bg='blue',fg='white',width=14)
+        button_add.grid(row=0,column=0,padx=3,pady=5)
+
+        #update button
+        button_update=Button(button_frame,text='Update',font=('arial',13,'bold'),bg='blue',fg='white',width=14)
+        button_update.grid(row=0,column=1,padx=3,pady=5)
+
+        #delete button
+        button_delete=Button(button_frame,text='Delete',font=('arial',13,'bold'),bg='blue',fg='white',width=14)
+        button_delete.grid(row=0,column=2,padx=3,pady=5)
+
+        #clear Buttom
+        button_clear=Button(button_frame,text='Clear',font=('arial',13,'bold'),bg='blue',fg='white',width=14)
+        button_clear.grid(row=0,column=3,padx=3,pady=5)
+
         # down frame
         down_frame=LabelFrame(Main_frame,bd=2,relief=RIDGE,text='Criminal Information table',font=('times new roman',18,'bold'),bg='white',fg='red')
         down_frame.place(x=10,y=280,width=1480,height=270)
