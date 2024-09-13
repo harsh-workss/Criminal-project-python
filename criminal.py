@@ -192,6 +192,15 @@ class Criminal:
         button_clear=Button(button_frame,text='Clear',font=('arial',13,'bold'),bg='blue',fg='white',width=14)
         button_clear.grid(row=0,column=3,padx=3,pady=5)
 
+        # Background right side image
+        img_crime=Image.open('Images/thief.jpg')
+        img_crime=img_crime.resize((470,245),Image.FILTERED)
+        self.photocrime=ImageTk.PhotoImage(img_crime)
+
+        self.img_crime=Label(upper_frame,image=self.photocrime)
+        self.img_crime.place(x=1000,y=0,width=470,height=245)
+
+
         # down frame
         down_frame=LabelFrame(Main_frame,bd=2,relief=RIDGE,text='Criminal Information table',font=('times new roman',18,'bold'),bg='white',fg='red')
         down_frame.place(x=10,y=280,width=1480,height=270)
@@ -199,6 +208,80 @@ class Criminal:
         # search frame
         search_frame=LabelFrame(down_frame,bd=2,relief=RIDGE,text='Search Criminal record',font=('tiems of roman',15,'bold'),bg='white',fg='red')
         search_frame.place(x=0,y=0,width=1470,height=60)
+
+        # search by frame
+        lbl_search_by=Label(search_frame,font=('arial',11,'bold'),text='Search by:',bg='red',fg='white')
+        lbl_search_by.grid(row=0,column=0,sticky=W,padx=5)
+
+        # combo search box
+        combo_search_box=ttk.Combobox(search_frame,font=('arial',11,'bold'),width=18,state='readonly')
+        combo_search_box['value']=('Select Option','Case_id','Criminal_no')
+        combo_search_box.current(0)
+        combo_search_box.grid(row=0,column=1,sticky=W,padx=5)
+
+        # entry feild
+        search_txt=ttk.Entry(search_frame,width=18,font=('arial',12,'bold'))
+        search_txt.grid(row=0,column=2,sticky=W,padx=5)
+
+        # search button
+        button_search=Button(search_frame,text='Search',font=('arial',13,'bold'),bg='blue',fg='white',width=14)
+        button_search.grid(row=0,column=3,sticky=W,padx=5)
+
+        # search all Buttom
+        button_all=Button(search_frame,text='Show all',font=('arial',13,'bold'),bg='blue',fg='white',width=14)
+        button_all.grid(row=0,column=4,sticky=W,padx=5)
+
+
+        # Table frame
+        table_frame=Frame(down_frame,bd=2,relief=RIDGE)
+        table_frame.place(x=0,y=60,width=1470,height=170)
+
+        # scroll bar
+        scroll_x=ttk.Scrollbar(table_frame,orient=HORIZONTAL)
+        scroll_y=ttk.Scrollbar(table_frame,orient=VERTICAL)
+
+        self.criminal_table=ttk.Treeview(table_frame,column=("1","2","3","4","5","6","7","8","9","10","11","12","13"),xscrollcommand=scroll_x.set,yscrollcommand=scroll_y.set)
+
+
+        scroll_x.pack(side=BOTTOM,fill=X)
+        scroll_y.pack(side=RIGHT,fill=Y)
+
+        scroll_x.config(command=self.criminal_table.xview)
+        scroll_y.config(command=self.criminal_table.yview) 
+
+        self.criminal_table.heading('1',text='CaseId')
+        self.criminal_table.heading('2',text='Crime No')
+        self.criminal_table.heading('3',text='Criminal Name')
+        self.criminal_table.heading('4',text='NickName')
+        self.criminal_table.heading('5',text='Arrest Date')
+        self.criminal_table.heading('6',text='Date of Crime')
+        self.criminal_table.heading('7',text='Address')
+        self.criminal_table.heading('8',text='Age')
+        self.criminal_table.heading('9',text='Occupation')
+        self.criminal_table.heading('10',text='Crime Type')
+        self.criminal_table.heading('11',text='Father Name')
+        self.criminal_table.heading('12',text='Gender')
+        self.criminal_table.heading('13',text='Wanted')
+        
+        
+        self.criminal_table['show']='headings'
+        self.criminal_table.column('1',width=100)
+        self.criminal_table.column('2',width=100)
+        self.criminal_table.column('3',width=100)
+        self.criminal_table.column('4',width=100)
+        self.criminal_table.column('5',width=100)
+        self.criminal_table.column('6',width=100)
+        self.criminal_table.column('7',width=100)
+        self.criminal_table.column('8',width=100)
+        self.criminal_table.column('9',width=100)
+        self.criminal_table.column('10',width=100)
+        self.criminal_table.column('11',width=100)
+        self.criminal_table.column('12',width=100)
+        self.criminal_table.column('13',width=100)
+
+
+        self.criminal_table.pack(fill=BOTH,expand=1)
+ 
 
 
 
