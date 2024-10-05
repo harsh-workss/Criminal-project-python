@@ -1,8 +1,8 @@
 from tkinter import *
 from tkinter import messagebox
 import mysql.connector
+import subprocess 
 
-# Function to clear placeholder text
 def clear_placeholder(event):
     if user_entry.get() == "Username":
         user_entry.delete(0, END)
@@ -25,25 +25,24 @@ def set_password_placeholder(event):
         password_entry.config(fg="grey")
         password_entry.config(show='')
 
-# Function to handle user login
+# user login
 def user_login():
     if user_entry.get() == '' or password_entry.get() == '':
         messagebox.showerror('Error', 'All fields are required')
         return
 
+    cursor = None  
     try:
-        # Establish connection to the MySQL database
+        # connection to my sql database
         con = mysql.connector.connect(
             host='localhost',
             user='root',
             password='admin4444',
-            database='login_page'
+            database='login_data'  
         )
         cursor = con.cursor()
         
-        # Query to check credentials
-        query = ' use login_page'
-        cursor.execute(query)
+       
         query = 'SELECT * FROM data WHERE user=%s AND code=%s'
         cursor.execute(query, (user_entry.get(), password_entry.get()))
         
@@ -53,18 +52,23 @@ def user_login():
             messagebox.showerror('Error', 'Invalid username or password')
         else:
             messagebox.showinfo('Welcome', 'Login Successful!')
+            # run the criminal.py 
+            subprocess.Popen(['python', 'criminal.py']) 
+            root.destroy()  
 
     except mysql.connector.Error as err:
         messagebox.showerror('Error', f'Connection not established: {err}')
     
     finally:
-        cursor.close()
-        con.close()
+        if cursor is not None:  # Check if cursor was created before closing
+            cursor.close()
+        if con.is_connected():
+            con.close()
 
-# Setting up the main window
+# main window
 root = Tk()
 root.title("CRIMINAL IDENTIFICATION SYSTEM - LOGIN PAGE")
-root.geometry("800x600")
+root.geometry("900x700")
 root.resizable(False, False)
 root.configure(bg="#fff")
 
@@ -99,11 +103,10 @@ login_button = Button(frame, width=40, bg="#57a1f8", fg="white", pady=7,
                       border=0, text="Login", command=user_login)
 login_button.place(x=35, y=204)
 
-# Bind events for placeholders
+# bind events for placeholders
 user_entry.bind("<FocusIn>", clear_placeholder)
 user_entry.bind("<FocusOut>", set_placeholder)
 password_entry.bind("<FocusIn>", clear_password_placeholder)
 password_entry.bind("<FocusOut>", set_password_placeholder)
 
-# Run the application
 root.mainloop()
