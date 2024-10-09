@@ -1,7 +1,8 @@
 from tkinter import *
 from tkinter import messagebox
 import mysql.connector
-import subprocess 
+import subprocess
+import os
 
 def clear_placeholder(event):
     if user_entry.get() == "Username":
@@ -25,7 +26,7 @@ def set_password_placeholder(event):
         password_entry.config(fg="grey")
         password_entry.config(show='')
 
-# user login
+# User login function
 def user_login():
     if user_entry.get() == '' or password_entry.get() == '':
         messagebox.showerror('Error', 'All fields are required')
@@ -33,16 +34,15 @@ def user_login():
 
     cursor = None  
     try:
-        # connection to my sql database
+        # Connection to MySQL database
         con = mysql.connector.connect(
             host='localhost',
             user='root',
             password='admin4444',
-            database='login_data'  
+            database='login_data'
         )
         cursor = con.cursor()
         
-       
         query = 'SELECT * FROM data WHERE user=%s AND code=%s'
         cursor.execute(query, (user_entry.get(), password_entry.get()))
         
@@ -52,8 +52,8 @@ def user_login():
             messagebox.showerror('Error', 'Invalid username or password')
         else:
             messagebox.showinfo('Welcome', 'Login Successful!')
-            # run the criminal.py 
-            subprocess.Popen(['python', 'criminal.py']) 
+            # Run criminal.py 
+            subprocess.Popen(['python', os.path.join(os.path.dirname(__file__), 'criminal.py')]) 
             root.destroy()  
 
     except mysql.connector.Error as err:
@@ -65,18 +65,19 @@ def user_login():
         if con.is_connected():
             con.close()
 
-# main window
+# Main window setup
 root = Tk()
 root.title("CRIMINAL IDENTIFICATION SYSTEM - LOGIN PAGE")
 root.geometry("900x700")
 root.resizable(False, False)
 root.configure(bg="#fff")
 
-# Adding Image
-img = PhotoImage(file="./Images/login.png")
+# Adding Image with absolute path handling
+img_path = os.path.join(os.path.dirname(__file__), "Images", "login.png")  # Use absolute path
+img = PhotoImage(file=img_path)
 Label(root, image=img, bg="white").place(x=10, y=80)
 
-# Login frame
+# Login frame setup
 frame = Frame(root, height=350, width=330, bg='white')
 frame.place(x=450, y=70)
 
@@ -84,26 +85,26 @@ frame.place(x=450, y=70)
 heading = Label(frame, text='Login', bg='white', fg='#57a1f8', font=('Microsoft YaHei UI Light', 23, 'bold'))
 heading.place(x=100, y=5)
 
-# User entry
+# User entry setup
 user_entry = Entry(frame, width=25, fg="grey", bg="white", border=0, font=("Microsoft YaHei UI Light", 11))
 user_entry.place(x=30, y=80)
 user_entry.insert(0, "Username")
 
 Frame(frame, width=295, bg="black", height=2).place(x=25, y=107)
 
-# Password entry
+# Password entry setup
 password_entry = Entry(frame, width=25, fg="grey", bg="white", border=0, font=("Microsoft YaHei UI Light", 11))
 password_entry.place(x=30, y=150)
 password_entry.insert(0, "Password")
 
 Frame(frame, width=295, bg="black", height=2).place(x=25, y=177)
 
-# Login button
+# Login button setup
 login_button = Button(frame, width=40, bg="#57a1f8", fg="white", pady=7,
                       border=0, text="Login", command=user_login)
 login_button.place(x=35, y=204)
 
-# bind events for placeholders
+# Bind events for placeholders
 user_entry.bind("<FocusIn>", clear_placeholder)
 user_entry.bind("<FocusOut>", set_placeholder)
 password_entry.bind("<FocusIn>", clear_password_placeholder)
